@@ -11,22 +11,25 @@ function ListarTarefa() {
   }, []);
 
   function carregarTarefas() {
-    fetch("http://localhost:5000/tarefas/listar")
-      .then((resposta) => resposta.json())
-      .then((tarefas: Tarefa[]) => {
-        console.table(tarefas);
-        setTarefas(tarefas);
+    axios.get<Tarefa[]>('http://localhost:5000/tarefas/listar')
+      .then((resposta) => {
+        console.table(resposta.data);  // Exemplo: exibindo no console em formato de tabela
+        setTarefas(resposta.data);     // Define o estado das tarefas com os dados recebidos
+      })
+      .catch((erro) => {
+        console.error('Erro ao carregar tarefas:', erro);
       });
   }
-
+  
   function alterar(id: string) {
     console.log(`Id: ${id}`);
     axios
       .put(`http://localhost:5000/tarefas/alterar/${id}`)
-      .then((resposta) => { 
-      setTarefas(resposta.data);
+      .then((resposta) => {
+        if (resposta && resposta.data) {
+            setTarefas(resposta.data as Tarefa[]);
+        }
       });
-     
   }
 
   return (

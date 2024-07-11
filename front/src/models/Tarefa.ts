@@ -1,11 +1,11 @@
 import { Categoria } from "./Categoria";
 
 export interface Tarefa{
-    tarefaId: string;
+    tarefaId?: string;
     titulo: string;
     descricao: string;
-    status: string;
+    status?: string;
     categoriaId:string;
-    categoria: Categoria;
-    criadoEm: string;
+    categoria?: Categoria;
+    criadoEm?: string;
 }

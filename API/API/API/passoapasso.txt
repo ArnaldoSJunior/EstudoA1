@@ -1,0 +1,101 @@
+API 
+para ver a porta so rodar o projeto
+criar repositório com README e excluir arquivos visualstudiocode.
+Clonar
+criar primeiro a solução (sempre dentro do repositório)
+      dotnet new sln --output ARNALDO
+Entrar na pasta da solução e criar o projeto
+       dotnet new web -n JUNIOR 
+Vincular projeto a solução (dentro do cmd JUNIOR)
+       dotnet sln add JUNIOR
+Verificar mapeamento 
+       git add .
+       git status
+       git commit -m "primeiro commit"
+       git push
+Instalar bibliotecas (dentro do projeto)
+       dotnet add package Microsoft.EntityFramework.Sqlite
+       dotnet add package Microsoft.EntityFramework.Design
+  
+
+CONFIGURAR BANCO DE DADOS
+
+Criar as classes antes de criar o banco
+Criar Pasta models (pode ser pelo solution explorer)
+      namespace Junior.models;
+criar atributos 
+
+Criar a classe AppDataContext
+
+ public class AppDataContext: DbContext{
+
+    public DbSet<Tarefa> Tarefas { get; set; }
+    public DbSet<Categoria> Categorias { get; set; }
+   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=Arnaldo.db");
+    }
+ 
+Criar a primeira migração
+    dotnet ef migrations add InitialCreate
+     
+int ou usar guid para relacionar tabela
+    dotnet ef database update (aparece o arquivo de banco de dados)
+
+na class program registrar banco de dados dentro da aplicação
+
+
+caso o relacionamento for feito posteriormente excluir migrações e o arquivo de banco e gerar uma nova migração
+
+
+
+
+FRONT ( NAO ESQUECER DE IMPLEMENTAR O CORS) antes do builder  e app.cors antes do app.run na api.(para api e rodar novamente)
+Dentro da pasta do repositório criar o projeto
+       npx create-react-app NOME --template typescript
+
+usar git add . 
+     git status depois commmitar
+
+instalar bibliotescas não esquecer
+npm install react-router-dom
+npm install @types/react-router-dom
+npm install axios @types/axios
+
+
+
+não esquecer da migracao se a api ja vier pronta.
+
+arquivos que ficam no projeto
+public somente index
+src(criar models e components classes .ts e componentes .tsx)
+ app.tsx index.tsx react-app-env...
+
+olhar sempre os caminhos para funcionar 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
